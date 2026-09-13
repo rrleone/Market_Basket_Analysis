@@ -1,4 +1,4 @@
-# Market Basket Analysis — Instacart
+# Market Basket Analysis
 
 ## 📊 Sobre o projeto
 
