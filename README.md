@@ -1,166 +1,158 @@
-# Market Basket Analysis
+# 📊 Customer Churn Analytics
 
-## 📊 Sobre o projeto
+## 🎯 Problema de negócio
 
-Projeto de **Market Basket Analysis (MBA)** desenvolvido em Python com o objetivo de identificar associações entre produtos comprados na mesma transação.
+A empresa deseja entender o comportamento de churn dos clientes e identificar quais perfis apresentam maiores taxas de cancelamento.
 
-A análise busca transformar o comportamento de compra em informações que podem apoiar estratégias de **cross-selling, recomendação de produtos e composição de ofertas**.
+A análise busca transformar os dados de clientes em informações que apoiem decisões de retenção, priorização de segmentos de risco e acompanhamento dos principais indicadores de churn.
 
-## 🎯 Objetivo
+---
 
-Investigar padrões de compra e identificar regras de associação entre produtos utilizando o algoritmo **Apriori** e as métricas:
+## 🗂️ Sobre os dados
 
-- **Support**
-- **Confidence**
-- **Lift**
+- **Fonte:** Dataset público de Customer Churn disponibilizado via Kaggle
+- **Tamanho:** 7.043 clientes e 19 variáveis
+- **Tipo de análise:** Customer Churn / Customer Retention
+- **Unidade de análise:** cliente
 
-## 🗂️ Dataset
+### Principais informações analisadas
 
-O projeto utiliza o conjunto de dados **Instacart Market Basket Analysis**, composto pelas tabelas:
+- Identificação do cliente
+- Perfil demográfico
+- Partner e Dependents
+- Tenure
+- Tipo de contrato
+- Serviços de internet
+- Serviços adicionais
+- Monthly Charges
+- Total Charges
+- Forma de pagamento
+- Status de Churn
 
-| Arquivo | Descrição |
-|---|---|
-| `aisles.csv` | Corredores/categorias de produtos |
-| `departments.csv` | Departamentos |
-| `orders.csv` | Informações dos pedidos |
-| `products.csv` | Cadastro de produtos |
-| `order_products__prior.csv` | Produtos dos pedidos anteriores |
-| `order_products__train.csv` | Produtos do conjunto de treino |
+---
 
-A base `order_products__prior.csv` é a principal fonte transacional utilizada na construção das cestas.
+## 🛠️ Ferramentas utilizadas
 
-> **Dados brutos:** os arquivos originais não são armazenados neste repositório devido ao tamanho do dataset. Para reproduzir integralmente a análise, é necessário obter os dados originais e colocá-los na pasta `dados/`.
+- **Linguagem:** Python
+- **Análise:** Pandas / NumPy
+- **Ambiente:** Jupyter Notebook / VS Code
+- **Visualização exploratória:** Matplotlib / Seaborn
+- **BI:** Power BI
+- **Transformação:** Power Query
+- **Modelagem e métricas:** DAX
+- **Versionamento:** Git / GitHub
 
-## 🔎 Metodologia
+---
 
-O projeto segue as seguintes etapas:
+## 🔍 Etapas da análise
 
-1. Carregamento dos dados;
-2. Inspeção das tabelas;
-3. Análise exploratória;
-4. Verificação de valores ausentes;
-5. Integração das tabelas;
-6. Análise de pedidos, produtos, departamentos e comportamento de recompra;
-7. Construção das cestas de produtos;
-8. Aplicação do algoritmo Apriori;
-9. Avaliação das regras de associação;
-10. Interpretação dos resultados sob a perspectiva de negócio.
+1. **Data Profiling** — entendimento da estrutura, tipos de dados, dimensões e características das variáveis.
+2. **Data Quality** — verificação de valores ausentes, inconsistências, duplicidades e qualidade das variáveis.
+3. **Análise exploratória (EDA)** — investigação do comportamento de churn segundo perfil, tenure, contrato, serviços e forma de pagamento.
+4. **Feature Engineering** — criação de agrupamentos e variáveis analíticas, incluindo faixas de tenure e perfil de risco.
+5. **Análise de Churn** — cálculo de clientes churn, taxa de churn e análise dos principais segmentos.
+6. **Customer Segmentation** — análise dos clientes segundo tempo de relacionamento, mensalidade e características contratuais.
+7. **Business Insights** — transformação dos resultados da análise em informações relevantes para retenção.
+8. **Power BI Dashboard** — construção de um dashboard executivo com três páginas de análise.
 
-### Formação das transações
+---
 
-A tabela `order_products__prior.csv` possui uma linha por item associado a um pedido. Os produtos são agrupados por `order_id`, formando uma cesta de produtos para cada pedido.
+## 📈 Principais insights
 
-O projeto registrou **3.214.874 transações** após essa preparação.
+- **26,54%** dos clientes da base apresentam churn.
+- Clientes com contrato **Month-to-month** apresentam taxa de churn de **42,7%**.
+- A faixa de relacionamento de **0–12 meses** apresenta taxa de churn de **47,4%**.
+- Clientes com serviço de internet **Fiber optic** apresentam taxa de churn de **41,9%**.
+- **Electronic check** apresenta a maior taxa de churn entre as formas de pagamento analisadas, com **45,29%**.
+- Clientes classificados como **Senior Citizen** apresentam taxa de churn de **41,7%**, contra **23,6%** entre os demais clientes.
+- Clientes **sem dependents** apresentam taxa de churn de **31,28%**, enquanto clientes com dependents apresentam **15,45%**.
 
-### Aplicação do Apriori
+Os resultados representam associações observadas na base analisada e não implicam, isoladamente, relação de causalidade.
 
-Para controlar o processamento, o Apriori foi aplicado sobre uma **amostra de 500.000 transações**.
+---
 
-Foram avaliadas duas configurações principais:
+## 🖼️ Prévia do dashboard
 
-- Support mínimo = **0,01** e Confidence mínimo = **0,20**
-- Support mínimo = **0,005** e Confidence mínimo = **0,20**
+O projeto possui três páginas no Power BI:
 
-## 📐 Métricas
+### 01 — Executive Overview
 
-### Support
+Visão executiva dos principais KPIs e dos principais indicadores associados ao churn.
 
-Indica a proporção de transações que contém simultaneamente os itens da associação.
+### 02 — Customer Profile & Churn Drivers
 
-### Confidence
+Análise do perfil dos clientes e dos principais fatores associados ao churn.
 
-Para uma regra `A → B`, representa a proporção de transações que contêm `B` entre aquelas que contêm `A`.
+### 03 — Churn Risk & Customer Segmentation
 
-### Lift
+Análise de risco, segmentação de clientes e visualização do perfil individual dos clientes.
 
-Compara a ocorrência conjunta dos produtos com a ocorrência esperada considerando a frequência individual dos itens.
+> As imagens finais do dashboard serão disponibilizadas na pasta `images/`.
 
-- **Lift > 1:** associação positiva;
-- **Lift = 1:** ausência de associação adicional;
-- **Lift < 1:** associação negativa.
+---
 
-## 📈 Principais resultados
+## ✅ Conclusão e recomendação
 
-Entre as regras apresentadas na análise, destacam-se:
+A análise indica concentração de churn em determinados segmentos, especialmente entre clientes com contratos Month-to-month, menor tempo de relacionamento e determinados serviços e formas de pagamento.
 
-| Produto A | Produto B | Confidence | Lift |
-|---|---|---:|---:|
-| Organic Cilantro | Limes | 25,04% | **5,74** |
-| Organic Garlic | Organic Yellow Onion | 20,11% | **5,69** |
-| Organic Lemon | Organic Hass Avocado | 23,99% | **3,62** |
-| Organic Cucumber | Organic Hass Avocado | 21,54% | **3,25** |
-| Organic Raspberries | Organic Strawberries | 24,86% | **3,01** |
+Como oportunidade de negócio, recomenda-se utilizar esses segmentos como base para estratégias de retenção e acompanhamento direcionado, validando posteriormente quais ações apresentam melhor resultado sobre a permanência dos clientes.
 
-Essas associações apresentam Lift superior a 1, indicando associação positiva entre os produtos dentro da amostra analisada.
+---
 
-## 💡 Insights de negócio
-
-Os resultados sugerem oportunidades para:
-
-- recomendações de produtos relacionados;
-- estratégias de cross-selling;
-- criação de combinações de produtos;
-- organização de ofertas;
-- apoio à personalização da experiência de compra.
-
-As regras de associação, entretanto, não devem ser interpretadas isoladamente. Uma aplicação comercial exigiria também considerar fatores como **margem, estoque, preço, disponibilidade e contexto da operação**.
-
-## 🛠️ Tecnologias utilizadas
-
-- Python
-- Jupyter Notebook
-- Pandas
-- NumPy
-- Matplotlib
-- Efficient Apriori
-- Watermark
-
-## 📁 Estrutura sugerida
+## 📁 Estrutura do repositório
 
 ```text
-Market-Basket-Analysis/
+Customer-Churn-Analytics/
 │
-├── README.md
-├── notebooks/
-│   └── MBA.ipynb
-│
-├── reports/
-│   └── MBA.pdf
-│
-├── dados/
+├── data/
 │   └── README.md
 │
-└── requirements.txt
+├── notebooks/
+│   ├── 01_data_profiling.ipynb
+│   ├── 02_data_quality.ipynb
+│   ├── 03_eda_churn.ipynb
+│   └── 04_feature_engineering.ipynb
+│
+├── images/
+│   ├── dashboard_page_01.png
+│   ├── dashboard_page_02.png
+│   └── dashboard_page_03.png
+│
+├── powerbi/
+│   └── Customer_Churn_Analytics.pbix
+│
+├── requirements.txt
+└── README.md
 ```
 
-## ▶️ Como executar
+---
 
-1. Obter os dados originais do dataset.
-2. Colocar os seis arquivos CSV na pasta `dados/`.
-3. Criar um ambiente Python.
-4. Instalar as dependências listadas em `requirements.txt`.
-5. Abrir `notebooks/MBA.ipynb`.
-6. Executar as células na ordem apresentada.
+## 🚀 Como reproduzir
 
-> A execução integral depende da disponibilidade do `order_products__prior.csv` e dos demais arquivos de dados.
+Clone o repositório:
 
-## ⚠️ Reprodutibilidade e validação
+```bash
+git clone https://github.com/rrleone/Customer-Churn-Analytics.git
+cd Customer-Churn-Analytics
+```
 
-Os resultados apresentados neste projeto foram **auditados quanto à consistência metodológica e matemática com base no notebook e nos outputs registrados**.
+Instale as dependências:
 
-As métricas de associação foram verificadas a partir das fórmulas utilizadas no próprio projeto.
+```bash
+pip install -r requirements.txt
+```
 
-A execução integral do notebook não foi refeita nesta etapa porque o arquivo original `order_products__prior.csv` não está atualmente disponível no ambiente de trabalho.
+Abra os notebooks na ordem indicada em `notebooks/` e execute as etapas da análise.
 
-Portanto, o projeto não afirma que os resultados foram reexecutados independentemente nesta revisão.
+O dashboard pode ser aberto no Power BI Desktop a partir do arquivo disponível em `powerbi/`.
 
-## 📄 Materiais
-
-- **Notebook:** análise completa em Jupyter Notebook.
-- **PDF:** versão documentada da análise e dos resultados.
+---
 
 ## 👤 Autor
 
 **Renato Leone**
 
-Projeto desenvolvido para demonstrar a aplicação prática de técnicas de **Análise de Dados e Market Basket Analysis com Python**.
+Analista de Dados | BI | SQL | Power BI | Python | PostgreSQL
+
+GitHub: https://github.com/rrleone
+
