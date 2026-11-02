@@ -2,7 +2,7 @@
 
 <h1>Market Basket Analysis — Instacart</h1>
 
-<p><strong>Market Basket Analysis · Product Associations · Customer Behavior</strong></p>
+<h3>Market Basket Analysis · Product Associations · Customer Behavior</h3>
 
 <p>
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
@@ -12,11 +12,13 @@
   <img src="https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=matplotlib&logoColor=white"/>
 </p>
 
-<p><strong>Identificando padrões de compra e associações entre produtos para apoiar estratégias comerciais.</strong></p>
+<p>
+  <strong>Identificando padrões de compra e associações entre produtos para apoiar estratégias comerciais.</strong>
+</p>
+
+<img src="exportacoes/capa.png" width="100%" alt="Capa do projeto Market Basket Analysis">
 
 </div>
-
----
 
 ---
 
