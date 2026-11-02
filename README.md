@@ -1,87 +1,161 @@
-# Market Basket Analysis
+# Market Basket Analysis — Instacart
 
-## 📊 Sobre o projeto
+<div align="center">
 
-Projeto de **Market Basket Analysis (MBA)** desenvolvido em Python com o objetivo de identificar associações entre produtos comprados na mesma transação.
+<h2>Market Basket Analysis · Product Associations · Customer Behavior</h2>
 
-A análise busca transformar o comportamento de compra em informações que podem apoiar estratégias de **cross-selling, recomendação de produtos e composição de ofertas**.
+<p>
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Jupyter- F37626?style=for-the-badge&logo=jupyter&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white"/>
+  <img src="https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge&logo=python&logoColor=white"/>
+</p>
 
-## 🎯 Objetivo
+<p><strong>Identificando padrões de compra e associações entre produtos para apoiar estratégias comerciais.</strong></p>
 
-Investigar padrões de compra e identificar regras de associação entre produtos utilizando o algoritmo **Apriori** e as métricas:
+</div>
 
-- **Support**
-- **Confidence**
-- **Lift**
+---
 
-## 🗂️ Dataset
+## 📌 Visão geral
 
-O projeto utiliza o conjunto de dados **Instacart Market Basket Analysis**, composto pelas tabelas:
+O **Market Basket Analysis — Instacart** é um projeto de Análise de Dados desenvolvido em Python para investigar padrões de compra e identificar associações entre produtos adquiridos em uma mesma transação.
+
+A partir do histórico de pedidos do dataset Instacart, o projeto transforma dados transacionais em informações que podem apoiar estratégias de recomendação, cross-selling, composição de ofertas e compreensão do comportamento de compra.
+
+O trabalho percorre etapas de exploração, preparação das transações, aplicação de algoritmos de associação e interpretação dos resultados sob a perspectiva de negócio.
+
+**DATA ANALYTICS · ASSOCIATION RULES · BUSINESS INSIGHTS**
+
+Dados → Exploração → Cestas de Compra → Apriori → Regras de Associação → Insights
+
+---
+
+## 🎯 Problema de negócio
+
+Em operações de e-commerce, compreender quais produtos são frequentemente adquiridos juntos pode ajudar a identificar oportunidades comerciais.
+
+A análise isolada de produtos e pedidos não revela necessariamente essas relações. O Market Basket Analysis permite investigar associações entre itens presentes na mesma cesta de compra.
+
+O projeto busca responder:
+
+- Quais produtos aparecem frequentemente nas mesmas transações?
+- Quais associações apresentam maior força?
+- Quais produtos podem ser considerados em estratégias de cross-selling?
+- Como as métricas de associação ajudam a interpretar o comportamento de compra?
+- Quais combinações podem ser exploradas em recomendações e ofertas?
+
+---
+
+## 🎯 Objetivo analítico
+
+Identificar regras de associação entre produtos utilizando o algoritmo **Apriori**, avaliando as relações por meio de:
+
+- Support
+- Confidence
+- Lift
+
+O objetivo é explorar padrões de compra e traduzir os resultados matemáticos em possíveis aplicações comerciais.
+
+---
+
+## 📦 Dataset
+
+O projeto utiliza o **Instacart Market Basket Analysis**, conjunto de dados que contém informações sobre pedidos, produtos, departamentos e corredores.
+
+### Principais arquivos
 
 | Arquivo | Descrição |
 |---|---|
-| `aisles.csv` | Corredores/categorias de produtos |
+| `aisles.csv` | Corredores e categorias de produtos |
 | `departments.csv` | Departamentos |
 | `orders.csv` | Informações dos pedidos |
 | `products.csv` | Cadastro de produtos |
-| `order_products__prior.csv` | Produtos dos pedidos anteriores |
-| `order_products__train.csv` | Produtos do conjunto de treino |
+| `order_products__prior.csv` | Produtos associados a pedidos anteriores |
+| `order_products__train.csv` | Produtos associados ao conjunto de treino |
 
-A base `order_products__prior.csv` é a principal fonte transacional utilizada na construção das cestas.
+A tabela `order_products__prior.csv` é a principal fonte transacional utilizada para construir as cestas de compra.
 
-> **Dados brutos:** os arquivos originais não são armazenados neste repositório devido ao tamanho do dataset. Para reproduzir integralmente a análise, é necessário obter os dados originais e colocá-los na pasta `dados/`.
+> **Dados brutos:** os arquivos originais não são armazenados no repositório devido ao tamanho do dataset. Para reproduzir a análise, é necessário obter os dados originais e disponibilizá-los na pasta `dados/`.
 
-## 🔎 Metodologia
+---
 
-O projeto segue as seguintes etapas:
+## 🔬 Metodologia
+
+O projeto segue um fluxo analítico estruturado:
 
 1. Carregamento dos dados;
 2. Inspeção das tabelas;
 3. Análise exploratória;
 4. Verificação de valores ausentes;
 5. Integração das tabelas;
-6. Análise de pedidos, produtos, departamentos e comportamento de recompra;
+6. Análise de pedidos, produtos, departamentos e recompra;
 7. Construção das cestas de produtos;
 8. Aplicação do algoritmo Apriori;
 9. Avaliação das regras de associação;
 10. Interpretação dos resultados sob a perspectiva de negócio.
 
-### Formação das transações
+### 1. Exploração e preparação
 
-A tabela `order_products__prior.csv` possui uma linha por item associado a um pedido. Os produtos são agrupados por `order_id`, formando uma cesta de produtos para cada pedido.
+Foram analisadas as tabelas do dataset para compreender a estrutura dos pedidos, os produtos e suas relações.
 
-O projeto registrou **3.214.874 transações** após essa preparação.
+A tabela de produtos por pedido foi utilizada para agrupar os itens por `order_id`, formando as cestas de compra.
 
-### Aplicação do Apriori
+### 2. Formação das transações
 
-Para controlar o processamento, o Apriori foi aplicado sobre uma **amostra de 500.000 transações**.
+Cada pedido representa uma transação contendo os produtos adquiridos conjuntamente.
 
-Foram avaliadas duas configurações principais:
+Após a preparação, o projeto registrou:
 
-- Support mínimo = **0,01** e Confidence mínimo = **0,20**
-- Support mínimo = **0,005** e Confidence mínimo = **0,20**
+**3.214.874 transações**
 
-## 📐 Métricas
+### 3. Aplicação do algoritmo Apriori
+
+Para controlar o processamento, o algoritmo Apriori foi aplicado sobre uma amostra de **500.000 transações**.
+
+Foram avaliadas duas configurações:
+
+| Configuração | Support mínimo | Confidence mínimo |
+|---|---:|---:|
+| Cenário 1 | 0,01 | 0,20 |
+| Cenário 2 | 0,005 | 0,20 |
+
+A comparação permite explorar regras com diferentes níveis de frequência mínima.
+
+---
+
+## 📐 Métricas de associação
 
 ### Support
 
-Indica a proporção de transações que contém simultaneamente os itens da associação.
+Representa a proporção de transações que contém simultaneamente os itens de uma associação.
+
+Indica a frequência com que uma combinação aparece no conjunto analisado.
 
 ### Confidence
 
-Para uma regra `A → B`, representa a proporção de transações que contêm `B` entre aquelas que contêm `A`.
+Para uma regra `A → B`, representa a proporção de transações que contêm o produto B entre as transações que contêm A.
+
+Ajuda a avaliar a frequência condicional da associação.
 
 ### Lift
 
-Compara a ocorrência conjunta dos produtos com a ocorrência esperada considerando a frequência individual dos itens.
+Compara a ocorrência conjunta dos produtos com a ocorrência esperada considerando suas frequências individuais.
 
-- **Lift > 1:** associação positiva;
-- **Lift = 1:** ausência de associação adicional;
-- **Lift < 1:** associação negativa.
+| Lift | Interpretação |
+|---|---|
+| **Lift > 1** | Associação positiva |
+| **Lift = 1** | Ausência de associação adicional |
+| **Lift < 1** | Associação negativa |
 
-## 📈 Principais resultados
+O Lift permite avaliar se a ocorrência conjunta dos produtos é superior ou inferior à esperada considerando suas frequências individuais.
 
-Entre as regras apresentadas na análise, destacam-se:
+---
+
+## 📊 Principais resultados
+
+Entre as regras identificadas na análise, destacam-se:
 
 | Produto A | Produto B | Confidence | Lift |
 |---|---|---:|---:|
@@ -91,31 +165,60 @@ Entre as regras apresentadas na análise, destacam-se:
 | Organic Cucumber | Organic Hass Avocado | 21,54% | **3,25** |
 | Organic Raspberries | Organic Strawberries | 24,86% | **3,01** |
 
-Essas associações apresentam Lift superior a 1, indicando associação positiva entre os produtos dentro da amostra analisada.
+As associações apresentadas possuem Lift superior a 1, indicando associação positiva entre os produtos na amostra analisada.
 
-## 💡 Insights de negócio
+**Importante:** associação não significa causalidade. Os resultados indicam padrões observados nas transações, não que a compra de um produto cause a compra do outro.
 
-Os resultados sugerem oportunidades para:
+---
 
-- recomendações de produtos relacionados;
-- estratégias de cross-selling;
-- criação de combinações de produtos;
-- organização de ofertas;
-- apoio à personalização da experiência de compra.
+## 💡 Insights e aplicações de negócio
 
-As regras de associação, entretanto, não devem ser interpretadas isoladamente. Uma aplicação comercial exigiria também considerar fatores como **margem, estoque, preço, disponibilidade e contexto da operação**.
+Os resultados do Market Basket Analysis podem apoiar diferentes estratégias comerciais.
+
+### Cross-selling
+
+Identificar produtos que apresentam associação positiva e avaliar oportunidades de recomendação conjunta.
+
+### Recomendação de produtos
+
+Utilizar regras de associação como uma possível fonte de informação para sistemas de recomendação.
+
+### Combinações comerciais
+
+Explorar associações para investigar possíveis combinações de produtos e ofertas.
+
+### Experiência de compra
+
+Utilizar padrões de compra para apoiar a organização de recomendações e facilitar a descoberta de produtos relacionados.
+
+### Considerações para aplicação real
+
+As regras de associação não devem ser utilizadas isoladamente. Uma aplicação comercial exigiria considerar também:
+
+- Margem dos produtos;
+- Estoque e disponibilidade;
+- Preço;
+- Sazonalidade;
+- Contexto da operação;
+- Validação dos resultados em dados adicionais.
+
+---
 
 ## 🛠️ Tecnologias utilizadas
 
-- Python
-- Jupyter Notebook
-- Pandas
-- NumPy
-- Matplotlib
-- Efficient Apriori
-- Watermark
+| Tecnologia | Aplicação |
+|---|---|
+| **Python** | Linguagem principal da análise |
+| **Jupyter Notebook** | Desenvolvimento e documentação do fluxo analítico |
+| **Pandas** | Manipulação e análise de dados |
+| **NumPy** | Operações numéricas |
+| **Matplotlib** | Visualização de dados |
+| **Efficient Apriori** | Aplicação do algoritmo Apriori e geração de regras |
+| **Watermark** | Registro de informações do ambiente notebook |
 
-## 📁 Estrutura sugerida
+---
+
+## 📁 Estrutura do projeto
 
 ```text
 Market-Basket-Analysis/
@@ -133,34 +236,55 @@ Market-Basket-Analysis/
 └── requirements.txt
 ```
 
+---
+
 ## ▶️ Como executar
 
-1. Obter os dados originais do dataset.
-2. Colocar os seis arquivos CSV na pasta `dados/`.
-3. Criar um ambiente Python.
-4. Instalar as dependências listadas em `requirements.txt`.
-5. Abrir `notebooks/MBA.ipynb`.
-6. Executar as células na ordem apresentada.
+1. Obtenha os arquivos originais do dataset Instacart Market Basket Analysis.
+2. Disponibilize os arquivos CSV na pasta `dados/`.
+3. Configure um ambiente Python.
+4. Instale as dependências listadas em `requirements.txt`.
+5. Abra `notebooks/MBA.ipynb` no Jupyter Notebook.
+6. Execute as células na ordem apresentada.
 
-> A execução integral depende da disponibilidade do `order_products__prior.csv` e dos demais arquivos de dados.
+A execução integral depende da disponibilidade dos arquivos originais, especialmente `order_products__prior.csv`.
+
+---
 
 ## ⚠️ Reprodutibilidade e validação
 
-Os resultados apresentados neste projeto foram **auditados quanto à consistência metodológica e matemática com base no notebook e nos outputs registrados**.
+Os resultados apresentados foram auditados quanto à consistência metodológica e matemática com base no notebook e nos outputs registrados.
 
-As métricas de associação foram verificadas a partir das fórmulas utilizadas no próprio projeto.
+As métricas de associação foram verificadas a partir das fórmulas utilizadas no projeto.
 
-A execução integral do notebook não foi refeita nesta etapa porque o arquivo original `order_products__prior.csv` não está atualmente disponível no ambiente de trabalho.
+A execução integral do notebook não foi refeita nesta revisão, pois o arquivo original `order_products__prior.csv` não estava disponível no ambiente de trabalho.
 
-Portanto, o projeto não afirma que os resultados foram reexecutados independentemente nesta revisão.
+Portanto, esta documentação **não afirma que os resultados foram reexecutados independentemente** nesta etapa.
 
-## 📄 Materiais
+---
 
-- **Notebook:** análise completa em Jupyter Notebook.
-- **PDF:** versão documentada da análise e dos resultados.
+## 📄 Materiais do projeto
+
+- **Notebook:** `notebooks/MBA.ipynb` — análise completa em Jupyter Notebook.
+- **Relatório:** `reports/MBA.pdf` — documentação da análise e dos resultados.
+
+---
 
 ## 👤 Autor
 
-**Renato Leone**
+**Renato Leone**  
+Analista de Dados | Business Intelligence
 
-Projeto desenvolvido para demonstrar a aplicação prática de técnicas de **Análise de Dados e Market Basket Analysis com Python**.
+Projeto desenvolvido para demonstrar a aplicação prática de técnicas de **Análise de Dados, comportamento de compra e Market Basket Analysis com Python**.
+
+---
+
+<div align="center">
+
+**MARKET BASKET ANALYSIS · INSTACART**
+
+*Dados · Padrões de Compra · Associação · Insights*
+
+**RENATO LEONE | DATA ANALYTICS & BUSINESS INTELLIGENCE**
+
+</div>
