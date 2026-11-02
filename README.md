@@ -1,3 +1,5 @@
+# Market Basket Analysis — Instacart
+
 <div align="center">
 
 <h1>Market Basket Analysis — Instacart</h1>
@@ -18,9 +20,7 @@
 
 ---
 
----
-
-## 📌 Visão geral
+## Visão geral do projeto
 
 O **Market Basket Analysis — Instacart** é um projeto de Análise de Dados desenvolvido em Python para investigar padrões de compra e identificar associações entre produtos adquiridos em uma mesma transação.
 
@@ -34,7 +34,7 @@ Dados → Exploração → Cestas de Compra → Apriori → Regras de Associaç�
 
 ---
 
-## 🎯 Problema de negócio
+## Problema de negócio
 
 Em operações de e-commerce, compreender quais produtos são frequentemente adquiridos juntos pode ajudar a identificar oportunidades comerciais.
 
@@ -50,7 +50,7 @@ O projeto busca responder:
 
 ---
 
-## 🎯 Objetivo analítico
+## Objetivos analíticos
 
 Identificar regras de associação entre produtos utilizando o algoritmo **Apriori**, avaliando as relações por meio de:
 
@@ -62,7 +62,7 @@ O objetivo é explorar padrões de compra e traduzir os resultados matemáticos 
 
 ---
 
-## 📦 Dataset
+## Dados utilizados
 
 O projeto utiliza o **Instacart Market Basket Analysis**, conjunto de dados que contém informações sobre pedidos, produtos, departamentos e corredores.
 
@@ -83,7 +83,7 @@ A tabela `order_products__prior.csv` é a principal fonte transacional utilizada
 
 ---
 
-## 🔬 Metodologia
+## Metodologia
 
 O projeto segue um fluxo analítico estruturado:
 
@@ -98,13 +98,13 @@ O projeto segue um fluxo analítico estruturado:
 9. Avaliação das regras de associação;
 10. Interpretação dos resultados sob a perspectiva de negócio.
 
-### 1. Exploração e preparação
+### Exploração e preparação
 
 Foram analisadas as tabelas do dataset para compreender a estrutura dos pedidos, os produtos e suas relações.
 
 A tabela de produtos por pedido foi utilizada para agrupar os itens por `order_id`, formando as cestas de compra.
 
-### 2. Formação das transações
+### Formação das transações
 
 Cada pedido representa uma transação contendo os produtos adquiridos conjuntamente.
 
@@ -112,7 +112,7 @@ Após a preparação, o projeto registrou:
 
 **3.214.874 transações**
 
-### 3. Aplicação do algoritmo Apriori
+### Aplicação do algoritmo Apriori
 
 Para controlar o processamento, o algoritmo Apriori foi aplicado sobre uma amostra de **500.000 transações**.
 
@@ -127,7 +127,7 @@ A comparação permite explorar regras com diferentes níveis de frequência mí
 
 ---
 
-## 📐 Métricas de associação
+## Métricas de associação
 
 ### Support
 
@@ -155,7 +155,7 @@ O Lift permite avaliar se a ocorrência conjunta dos produtos é superior ou inf
 
 ---
 
-## 📊 Principais resultados
+## Principais resultados
 
 Entre as regras identificadas na análise, destacam-se:
 
@@ -173,7 +173,7 @@ As associações apresentadas possuem Lift superior a 1, indicando associação 
 
 ---
 
-## 💡 Insights e aplicações de negócio
+## Insights e aplicações de negócio
 
 Os resultados do Market Basket Analysis podem apoiar diferentes estratégias comerciais.
 
@@ -206,7 +206,7 @@ As regras de associação não devem ser utilizadas isoladamente. Uma aplicaçã
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+## Tecnologias e ferramentas
 
 | Tecnologia | Aplicação |
 |---|---|
@@ -220,7 +220,7 @@ As regras de associação não devem ser utilizadas isoladamente. Uma aplicaçã
 
 ---
 
-## 📁 Estrutura do projeto
+## Estrutura do projeto
 
 ```text
 Market-Basket-Analysis/
@@ -240,7 +240,7 @@ Market-Basket-Analysis/
 
 ---
 
-## ▶️ Como executar
+## Como executar
 
 1. Obtenha os arquivos originais do dataset Instacart Market Basket Analysis.
 2. Disponibilize os arquivos CSV na pasta `dados/`.
@@ -253,7 +253,7 @@ A execução integral depende da disponibilidade dos arquivos originais, especia
 
 ---
 
-## ⚠️ Reprodutibilidade e validação
+## Reprodutibilidade e validação
 
 Os resultados apresentados foram auditados quanto à consistência metodológica e matemática com base no notebook e nos outputs registrados.
 
@@ -265,14 +265,14 @@ Portanto, esta documentação **não afirma que os resultados foram reexecutados
 
 ---
 
-## 📄 Materiais do projeto
+## Materiais do projeto
 
 - **Notebook:** `notebooks/MBA.ipynb` — análise completa em Jupyter Notebook.
 - **Relatório:** `reports/MBA.pdf` — documentação da análise e dos resultados.
 
 ---
 
-## 👤 Autor
+## Autor
 
 **Renato Leone**  
 Analista de Dados | Business Intelligence
@@ -283,9 +283,9 @@ Projeto desenvolvido para demonstrar a aplicação prática de técnicas de **An
 
 <div align="center">
 
-**MARKET BASKET ANALYSIS · INSTACART**
+**MARKET BASKET ANALYSIS — INSTACART**
 
-*Dados · Padrões de Compra · Associação · Insights*
+Dados · Padrões de Compra · Associação · Insights
 
 **RENATO LEONE | DATA ANALYTICS & BUSINESS INTELLIGENCE**
 
